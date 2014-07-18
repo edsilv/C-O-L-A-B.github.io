@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>{{title}} | {{site.title}}</title>
+        <!--<link rel="stylesheet" href="{{assets}}/css/bootstrap.min.css">-->
+    </head>
+    <body>
+        <ul>
+            {{#each pages}}
+            {{#isnt data.post true}}
+                <li{{#if this.isCurrentPage}} class="active"{{/if}}>
+                    <a href="{{ replaceStr dest 'dist' '' }}">{{ data.title }}</a>
+                </li>
+            {{/isnt}}
+            {{/each}}
+        </ul>
