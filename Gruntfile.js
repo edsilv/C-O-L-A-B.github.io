@@ -104,6 +104,13 @@ module.exports = function(grunt) {
             }
         },
 
+        exec: {
+            // push contents of /dist (on assemble branch) to origin master
+            deploy: {
+                cmd: 'git subtree push --prefix dist origin master'
+            }
+        },
+
         aws: grunt.file.readJSON('grunt-aws.json'),
 
         s3: {
@@ -133,6 +140,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-s3');
 
@@ -147,6 +155,10 @@ module.exports = function(grunt) {
         'clean',
         'assemble',
         'copy:assets'
+    ]);
+
+    grunt.registerTask('deploy', [
+        'exec:deploy'
     ]);
 
     grunt.registerTask('sync', [
