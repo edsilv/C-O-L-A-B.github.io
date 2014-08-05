@@ -8,4 +8,13 @@ module.exports.register = function (Handlebars, options) {
             return '';
         }
     });
+
+    Handlebars.registerHelper('ellipsis', function (text, chars) {
+        if (text.length > chars) {
+            var trimmedText = text.substr(0, chars);
+            trimmedText = trimmedText.substr(0, Math.min(trimmedText.length, trimmedText.lastIndexOf(" ")));
+            return trimmedText + "&hellip;";
+        }
+        return text;
+    });
 };

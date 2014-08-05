@@ -60,33 +60,49 @@ module.exports = function(grunt) {
                     sortorder: 'descending'
                 }],
                 data: '<%= config.src %>/data/*.{json,yml}',
-                layout: 'page.hbs',
+                layout: 'default.hbs',
                 layoutdir: '<%= config.src %>/bonnet/layouts/',
                 partials: '<%= config.src %>/bonnet/partials/**/*.hbs',
                 helpers: '<%= config.src %>/bonnet/helpers/**/*.js',
                 assets: '<%= config.dist %>/assets'
             },
+
             pages: {
-                files: [{
-                    // any files not in the _pages directory
-                    cwd: '<%= config.src %>/content/',
-                    dest: '<%= config.dist %>/',
-                    expand: true,
-                    src: ['**/*.hbs', '**/*.md', '!_pages/**/*.hbs']
-                },
-                {
-                    // files in the _pages directory
-                    cwd: '<%= config.src %>/content/_pages/',
-                    dest: '<%= config.dist %>/',
-                    expand: true,
-                    src: '**/*.hbs'
-                }]
+                files: [
+                    {
+                        // any files not in the _pages directory
+                        cwd: '<%= config.src %>/content/',
+                        dest: '<%= config.dist %>/',
+                        expand: true,
+                        src: ['**/*.hbs', '**/*.md', '!_pages/*']
+                    },
+                    {
+                        // files in the _pages directory
+                        cwd: '<%= config.src %>/content/_pages/',
+                        dest: '<%= config.dist %>/',
+                        expand: true,
+                        src: ['**/*.hbs', '**/*.md']
+                    }
+                ]
             }
         },
 
         // Before generating any new files,
         // remove any previously-created files.
-        clean: ['<%= config.dist %>/**/*.{html,xml}'],
+        clean: ['<%= config.dist %>/*'],
+
+        copy: {
+            assets: {
+                files: [
+                    {
+                        cwd: '<%= config.src %>/assets',
+                        expand: true,
+                        src: ['**'],
+                        dest: '<%= config.dist %>/assets'
+                    }
+                ]
+            }
+        },
 
         aws: grunt.file.readJSON('grunt-aws.json'),
 
@@ -115,6 +131,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('assemble');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-s3');
@@ -128,7 +145,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', [
         'clean',
-        'assemble'
+        'assemble',
+        'copy:assets'
     ]);
 
     grunt.registerTask('sync', [

@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>{{title}} | {{site.title}}</title>
-        <!--<link rel="stylesheet" href="{{assets}}/css/bootstrap.min.css">-->
-    </head>
-    <body>
-        <ul>
-            {{#each pages}}
-            {{#isnt data.post true}}
-                <li{{#if this.isCurrentPage}} class="active"{{/if}}>
-                    <a href="{{ replaceStr dest 'dist' '' }}">{{ data.title }}</a>
-                </li>
-            {{/isnt}}
-            {{/each}}
-        </ul>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>{{this.page.title}}</title>
+    <meta name="description" content="{{this.page.description}}" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="{{assets}}/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+</head>
+<body class="{{body_class}}">
+
+    <header class="site-head">
+        <div class="vertical">
+            <div class="site-head-content inner">
+                <h1 class="blog-title"><a href="/">{{site.title}}</a></h1>
+                <div class="links">
+                    <ul>
+                        <li><a href="https://twitter.com/edsilv" title="https://twitter.com/edsilv" target="_blank"><i class="ico icon-twitter"></i></a></li>
+                        <li><a href="https://github.com/edsilv" title="https://github.com/edsilv" target="_blank"><i class="ico icon-github"></i></a></li>
+                        <!--<li><a href="http://www.linkedin.com/in/edsilv" title="http://www.linkedin.com/in/edsilv" target="_blank"><i class="ico icon-linkedin"></i></a></li>-->
+                        <li><a href="http://instagram.com/edsilv_" title="http://instagram.com/edsilv_" target="_blank"><i class="ico icon-instagram"></i></a></li>
+                        <li><a class="mailto"><i class="ico icon-envelope"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="content" role="main">
