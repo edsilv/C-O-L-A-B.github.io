@@ -109,7 +109,7 @@ module.exports = function(grunt) {
             deploy: {
                 cmd: 'git subtree push --prefix dist origin master'
             }
-        },
+        } ,
 
         aws: grunt.file.readJSON('grunt-aws.json'),
 
