@@ -9,7 +9,7 @@ Develop on the 'assemble' branch, not 'master', which is reserved for the github
 
 On the 'assemble' branch run:
 
-`grunt:build`
+`grunt build`
 
 to assemble the site and copy assets into /dist.
 
