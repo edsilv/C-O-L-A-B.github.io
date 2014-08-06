@@ -13,8 +13,18 @@ module.exports.register = function (Handlebars, options) {
         if (text.length > chars) {
             var trimmedText = text.substr(0, chars);
             trimmedText = trimmedText.substr(0, Math.min(trimmedText.length, trimmedText.lastIndexOf(" ")));
-            return trimmedText + "&hellip;";
+            return trimmedText + "...";
         }
         return text;
+    });
+
+    Handlebars.registerHelper('date', function (date, format, timeago) {
+        if (timeago) {
+            date = moment(date).fromNow();
+        } else {
+            date = moment(date).format(format);
+        }
+
+        return date;
     });
 };
