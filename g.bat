@@ -1,2 +1,0 @@
-grunt sync & exit
-
