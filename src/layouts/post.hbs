@@ -6,7 +6,7 @@ body_class: "post-template"
 
 <article class="post">
 
-    <span class="post-meta"><time datetime="{{!date format="YYYY-MM-DD"}}">{{!date format='DD MMM YYYY'}}</time> {{!tags prefix="on " separator=" | "}}</span>
+    <span class="post-meta"><time datetime="{{moment posted format="YYYY-MM-DD"}}">{{moment posted format='DD MMM YYYY'}}</time> {{!tags prefix="on " separator=" | "}}</span>
 
     <h1 class="post-title">{{{title}}}</h1>
 

@@ -1,14 +1,14 @@
 
 {{#withSort post 'data.posted'}}
     {{#each this.pages }}
-        {{debug this}}
+        {{!debug this}}
         <article class="post">
             <header class="post-header">
                 <span class="post-meta">
-                    <time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMM YYYY"}}</time>
+                    <time datetime="{{moment posted format ="YYYY-MM-DD"}}">{{moment posted format="DD MMM YYYY"}}</time>
                     {{!tags prefix="on "}}
                 </span>
-                <h2 class="post-title"><a href="{{replaceStr this.dest 'dist' ''}}">{{this.data.title}}</a></h2>
+                <h2 class="post-title"><a href="{{replaceStr dest 'dist' ''}}">{{data.title}}</a></h2>
             </header>
             <section class="post-excerpt">
                 <p>

@@ -1,0 +1,16 @@
+{
+  "name": "C-O-L-A-B.github.io",
+  "version": "0.0.0",
+  "homepage": "https://github.com/C-O-L-A-B/C-O-L-A-B.github.io",
+  "authors": [
+    "edsilv <e.silverton@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -61,9 +61,9 @@ module.exports = function(grunt) {
                 }],
                 data: '<%= config.src %>/data/*.{json,yml}',
                 layout: 'default.hbs',
-                layoutdir: '<%= config.src %>/bonnet/layouts/',
-                partials: '<%= config.src %>/bonnet/partials/**/*.hbs',
-                helpers: '<%= config.src %>/bonnet/helpers/**/*.js',
+                layoutdir: '<%= config.src %>/layouts/',
+                partials: '<%= config.src %>/partials/**/*.hbs',
+                helpers: ['helper-moment', '<%= config.src %>/helpers/**/*.js'],
                 assets: '<%= config.dist %>/assets'
             },
 
@@ -99,6 +99,12 @@ module.exports = function(grunt) {
                         expand: true,
                         src: ['**'],
                         dest: '<%= config.dist %>/assets'
+                    },
+                    {
+                        cwd: '<%= config.src %>/bower_components',
+                        expand: true,
+                        src: ['**/*.js'],
+                        dest: '<%= config.dist %>/assets/js'
                     }
                 ]
             }

@@ -1,3 +1,5 @@
+
+
 module.exports.register = function (Handlebars, options) {
     'use strict';
 
@@ -16,15 +18,5 @@ module.exports.register = function (Handlebars, options) {
             return trimmedText + "...";
         }
         return text;
-    });
-
-    Handlebars.registerHelper('date', function (date, format, timeago) {
-        if (timeago) {
-            date = moment(date).fromNow();
-        } else {
-            date = moment(date).format(format);
-        }
-
-        return date;
     });
 };
