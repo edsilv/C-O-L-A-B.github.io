@@ -7,12 +7,16 @@ Develop on the 'assemble' branch, not 'master', which is reserved for the github
 
 ## Build
 
-Run grunt:build to assemble the site and copy assets into /dist.
+On the 'assemble' branch run:
+
+`grunt:build`
+
+to assemble the site and copy assets into /dist.
 
 ## Deploy to Github Site
 
-On the 'assemble' branch use:
+On the 'assemble' branch run:
 
-`git subtree push --prefix dist origin master`
+`grunt deploy`
 
-to push only /dist dir contents (https://gist.github.com/cobyism/4730490)
+to push only /dist dir contents to master (https://gist.github.com/cobyism/4730490)
