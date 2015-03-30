@@ -167,10 +167,10 @@ module.exports = function(grunt) {
         'exec:deploy'
     ]);
 
-    grunt.registerTask('sync', [
-        'build',
-        's3:dev'
-    ]);
+    //grunt.registerTask('sync', [
+    //    'build',
+    //    's3:dev'
+    //]);
 
     grunt.registerTask('default', [
         'build'
