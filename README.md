@@ -20,3 +20,9 @@ On the 'assemble' branch run:
 `grunt deploy`
 
 to push only /dist dir contents to master (https://gist.github.com/cobyism/4730490)
+
+## Notes
+
+If you get an `Updates were rejected` error when running grunt:deploy, delete the remote master branch and push again:
+
+http://stackoverflow.com/questions/17643381/how-to-upload-my-angularjs-static-site-to-github-pages
