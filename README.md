@@ -17,6 +17,12 @@ to assemble the site and copy assets into /dist.
 
 On the 'assemble' branch run:
 
+`grunt build`
+
+to assemble the site in the /dist dir.
+
+Then commit the changes and run:
+
 `grunt deploy`
 
 to push only /dist dir contents to master (https://gist.github.com/cobyism/4730490)
