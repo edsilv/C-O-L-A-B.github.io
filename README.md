@@ -1,4 +1,4 @@
-C-O-L-A-B.github.io
+edsilv.github.io
 ===================
 
 A static site generator built with [assemble](http://assemble.io)
