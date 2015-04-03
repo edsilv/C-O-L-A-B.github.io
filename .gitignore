@@ -22,3 +22,5 @@ bower_components
 *.editorconfig
 
 grunt-aws.json
+
+/dist

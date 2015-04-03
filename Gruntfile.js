@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 
         watch: {
             assemble: {
-                files: ['<%= config.src %>/{content,data,bonnet}/{,*/}*.{md,hbs,yml}'],
+                files: ['<%= config.src %>/{content,data,layouts}/{,*/}*.{md,hbs,yml}'],
                 tasks: ['assemble']
             },
             livereload: {
@@ -115,31 +115,7 @@ module.exports = function(grunt) {
             deploy: {
                 cmd: 'git subtree push --prefix dist origin master'
             }
-        } //,
-
-        //aws: grunt.file.readJSON('grunt-aws.json'),
-        //
-        //s3: {
-        //    options: {
-        //        key: '<%= aws.key %>',
-        //        secret: '<%= aws.secret %>',
-        //        bucket: '<%= aws.bucket %>',
-        //        access: 'public-read',
-        //        headers: {
-        //            // Two Year cache policy (1000 * 60 * 60 * 24 * 730)
-        //            "Cache-Control": "max-age=630720000, public",
-        //            "Expires": new Date(Date.now() + 63072000000).toUTCString()
-        //        }
-        //    },
-        //    dev: {
-        //        upload: [{
-        //            //verify: true,
-        //            src: '<%= config.dist %>/**',
-        //            dest: '',
-        //            rel: '<%= config.dist %>'
-        //        }]
-        //    }
-        //}
+        }
     });
 
     grunt.loadNpmTasks('assemble');
@@ -148,9 +124,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-s3');
 
-    grunt.registerTask('server', [
+    grunt.registerTask('serve', [
         'clean',
         'assemble',
         'connect:livereload',
@@ -166,11 +141,6 @@ module.exports = function(grunt) {
     grunt.registerTask('deploy', [
         'exec:deploy'
     ]);
-
-    //grunt.registerTask('sync', [
-    //    'build',
-    //    's3:dev'
-    //]);
 
     grunt.registerTask('default', [
         'build'
