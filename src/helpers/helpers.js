@@ -1,5 +1,4 @@
 
-
 module.exports.register = function (Handlebars, options) {
     'use strict';
 
@@ -11,4 +10,16 @@ module.exports.register = function (Handlebars, options) {
         }
     });
 
+    Handlebars.registerHelper('breaklines', function(text) {
+        text = Handlebars.Utils.escapeExpression(text);
+        text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
+        return new Handlebars.SafeString(text);
+    });
+
+    Handlebars.registerHelper('jsonFriendly', function(text) {
+        text = Handlebars.Utils.escapeExpression(text);
+        text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
+        text = text.replace(/"/g, "\'");
+        return text;
+    });
 };

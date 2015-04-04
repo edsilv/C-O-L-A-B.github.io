@@ -19,19 +19,11 @@ module.exports = function(grunt) {
 
         watch: {
             assemble: {
-                files: ['<%= config.src %>/{content,data,layouts}/{,*/}*.{md,hbs,yml}'],
-                tasks: ['assemble']
-            },
-            livereload: {
                 options: {
                     livereload: '<%= connect.options.livereload %>'
                 },
-                files: [
-                    '<%= config.dist %>/{,*/}*.html',
-                    '<%= config.dist %>/assets/{,*/}*.css',
-                    '<%= config.dist %>/assets/{,*/}*.js',
-                    '<%= config.dist %>/assets/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-                ]
+                files: ['<%= config.src %>/{content,data,layouts,partials}/{,*/}*.{md,hbs,yml}'],
+                tasks: ['build']
             }
         },
 
@@ -64,24 +56,38 @@ module.exports = function(grunt) {
                 layoutdir: '<%= config.src %>/layouts/',
                 partials: '<%= config.src %>/partials/**/*.hbs',
                 helpers: ['helper-moment', '<%= config.src %>/helpers/**/*.js'],
-                assets: '<%= config.dist %>/assets'
+                assets: '<%= config.dist %>/assets',
+                lib: '<%= config.dist %>/lib'
             },
 
             pages: {
                 files: [
                     {
-                        // any files not in the _pages directory
+                        // any files not in the 'pages' or 'data' directories
                         cwd: '<%= config.src %>/content/',
                         dest: '<%= config.dist %>/',
                         expand: true,
-                        src: ['**/*.hbs', '**/*.md', '!_pages/*']
+                        src: ['**/*.hbs', '**/*.md', '!pages/*', '!data/*']
                     },
                     {
-                        // files in the _pages directory
-                        cwd: '<%= config.src %>/content/_pages/',
+                        // files in the 'pages' directory
+                        cwd: '<%= config.src %>/content/pages/',
                         dest: '<%= config.dist %>/',
                         expand: true,
                         src: ['**/*.hbs', '**/*.md']
+                    }
+                ]
+            },
+
+            data: {
+                options: { ext: '.json' },
+                files: [
+                    {
+                        // files in the 'data' directory
+                        cwd: '<%= config.src %>/content/',
+                        dest: '<%= config.dist %>/',
+                        expand: true,
+                        src: ['**/*.hbs', '**/*.md', '!pages/*']
                     }
                 ]
             }
@@ -101,10 +107,17 @@ module.exports = function(grunt) {
                         dest: '<%= config.dist %>/assets'
                     },
                     {
-                        cwd: '<%= config.src %>/bower_components',
+                        cwd: '<%= config.src %>/lib',
                         expand: true,
-                        src: ['**/*.js'],
-                        dest: '<%= config.dist %>/assets/js'
+                        flatten: true,
+                        src: [
+                            '**/jquery.min.js',
+                            '**/jquery.min.map',
+                            '**/handlebars.min.js',
+                            '**/ember.min.js',
+                            '**/ember-template-compiler.js'
+                        ],
+                        dest: '<%= config.dist %>/lib'
                     }
                 ]
             }
@@ -126,8 +139,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('serve', [
-        'clean',
-        'assemble',
+        'build',
         'connect:livereload',
         'watch'
     ]);

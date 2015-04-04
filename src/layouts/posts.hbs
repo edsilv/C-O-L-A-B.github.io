@@ -1,0 +1,14 @@
+[
+    {{#withSort post 'data.posted'}}
+        {{#each this.pages }}
+        {{!debug this}}
+            {
+                "posted": "{{data.posted}}",
+                "posted-formatted": "{{moment posted format="DD MMM YYYY"}}",
+                "title": "{{data.title}}",
+                "url": "{{dest}}",
+                "content": "{{#markdown}}{{{jsonFriendly page}}}{{/markdown}}"
+            }{{#unless @last}},{{/unless}}
+        {{/each}}
+    {{/withSort}}
+]
