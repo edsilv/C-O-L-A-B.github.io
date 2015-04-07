@@ -7,7 +7,7 @@
                 "posted-formatted": "{{moment posted format="DD MMM YYYY"}}",
                 "title": "{{data.title}}",
                 "url": "{{dest}}",
-                "content": "{{#markdown}}{{{jsonFriendly page}}}{{/markdown}}"
+                "content": "{{#jsonFriendly}}{{#markdown}}{{page}}{{/markdown}}{{/jsonFriendly}}"
             }{{#unless @last}},{{/unless}}
         {{/each}}
     {{/withSort}}

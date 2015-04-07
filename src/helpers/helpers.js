@@ -16,10 +16,15 @@ module.exports.register = function (Handlebars, options) {
         return new Handlebars.SafeString(text);
     });
 
-    Handlebars.registerHelper('jsonFriendly', function(text) {
-        text = Handlebars.Utils.escapeExpression(text);
+    Handlebars.registerHelper('jsonFriendly', function(options) {
+        var text = options.fn(this);
+        //var text = Handlebars.Utils.escapeExpression(options.fn(this));
         text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
         text = text.replace(/"/g, "\'");
-        return text;
+        return new Handlebars.SafeString(text);
+    });
+
+    Handlebars.registerHelper('json', function(obj) {
+        return JSON.stringify(obj);
     });
 };

@@ -9,7 +9,7 @@ var blogPostTemplate =
         </header>\
         <section class="post-excerpt">\
             <p>\
-            {{view.content}}\
+            {{{view.content}}}\
             </p>\
         </section>\
     </article>';
